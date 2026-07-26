@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<style>
+
+:root {
+  --color-brand-primary: #232425;
+  --color-brand-secondary: #0F7FFF;
+  --color-bg-page: #FFFFFF;
+  --color-bg-surface: #FAFAFA;
+  --color-bg-subtle: #F5F5F5;
+  --color-text-primary: #232425;
+  --color-text-secondary: #606366;
+  --color-text-tertiary: #909499;
+  --color-text-disabled: #C4C7CC;
+  --color-text-link: #0F7FFF;
+  --color-text-on-brand: #FFFFFF;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+  --color-border-default: #EAEAEA;
+  --color-border-strong: #D0D3D8;
+  --color-border-subtle: #F2F2F2;
+  --color-border-brand: #0F7FFF;
+  --color-border-error: #EF4444;
+  --color-border-success: #10B981;
+  --space-4: 4px; --space-8: 8px; --space-12: 12px; --space-16: 16px;
+  --space-20: 20px; --space-24: 24px; --space-32: 32px; --space-48: 48px;
+  --text-h1: 36px; --text-h2: 28px; --text-h3: 22px; --text-h4: 18px;
+  --text-body: 16px; --text-small: 14px; --text-caption: 12px;
+  --radius-4: 4px; --radius-8: 8px; --radius-12: 12px;
+  --border-width-1: 1px; --border-width-2: 2px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+
+  /* Categorical color ramps (mirror of design-tokens.css) */
+  --color-cat-blue-50:#EBF3FE;--color-cat-blue-100:#C5DDFC;--color-cat-blue-200:#92BEF8;--color-cat-blue-400:#0F7FFF;--color-cat-blue-600:#0561C5;--color-cat-blue-800:#053F7C;--color-cat-blue-900:#06294F;
+  --color-cat-green-50:#E5F8F1;--color-cat-green-100:#B7EFD8;--color-cat-green-200:#7DE0BA;--color-cat-green-400:#10B981;--color-cat-green-600:#088762;--color-cat-green-800:#045A41;--color-cat-green-900:#023A29;
+  --color-cat-amber-50:#FEF3D9;--color-cat-amber-100:#FCE0A0;--color-cat-amber-200:#FAC865;--color-cat-amber-400:#F59E0B;--color-cat-amber-600:#B16E03;--color-cat-amber-800:#6E4500;--color-cat-amber-900:#422900;
+  --color-cat-red-50:#FDE9E9;--color-cat-red-100:#F9C2C2;--color-cat-red-200:#F49595;--color-cat-red-400:#EF4444;--color-cat-red-600:#C41B1B;--color-cat-red-800:#821212;--color-cat-red-900:#520B0B;
+  --color-cat-purple-50:#F0EAFE;--color-cat-purple-100:#D5C2FB;--color-cat-purple-200:#B59AF8;--color-cat-purple-400:#8B5CF6;--color-cat-purple-600:#6431D2;--color-cat-purple-800:#441E8E;--color-cat-purple-900:#2A1259;
+  --color-cat-teal-50:#DEF7F4;--color-cat-teal-100:#A6EBE2;--color-cat-teal-200:#6BDCCD;--color-cat-teal-400:#14B8A6;--color-cat-teal-600:#0D8779;--color-cat-teal-800:#075A50;--color-cat-teal-900:#043934;
+  --color-cat-coral-50:#FEE7EB;--color-cat-coral-100:#FCC0CA;--color-cat-coral-200:#FA98A8;--color-cat-coral-400:#FB7185;--color-cat-coral-600:#D14258;--color-cat-coral-800:#8C2336;--color-cat-coral-900:#5A111F;
+  --color-cat-pink-50:#FCE4F1;--color-cat-pink-100:#F7BAD9;--color-cat-pink-200:#F18BBE;--color-cat-pink-400:#EC4899;--color-cat-pink-600:#B81F75;--color-cat-pink-800:#7B0F4D;--color-cat-pink-900:#4D0530;
+  --color-cat-gray-50:#F3F4F6;--color-cat-gray-100:#E5E7EB;--color-cat-gray-200:#CBD0D7;--color-cat-gray-400:#6B7280;--color-cat-gray-600:#4A4F58;--color-cat-gray-800:#2A2D33;--color-cat-gray-900:#16181B;
+}
+.c-blue   { fill: var(--color-cat-blue-50);   stroke: var(--color-cat-blue-600);   color: var(--color-cat-blue-800);   background-color: var(--color-cat-blue-50);   border-color: var(--color-cat-blue-600); }
+.c-green  { fill: var(--color-cat-green-50);  stroke: var(--color-cat-green-600);  color: var(--color-cat-green-800);  background-color: var(--color-cat-green-50);  border-color: var(--color-cat-green-600); }
+.c-amber  { fill: var(--color-cat-amber-50);  stroke: var(--color-cat-amber-600);  color: var(--color-cat-amber-800);  background-color: var(--color-cat-amber-50);  border-color: var(--color-cat-amber-600); }
+.c-red    { fill: var(--color-cat-red-50);    stroke: var(--color-cat-red-600);    color: var(--color-cat-red-800);    background-color: var(--color-cat-red-50);    border-color: var(--color-cat-red-600); }
+.c-purple { fill: var(--color-cat-purple-50); stroke: var(--color-cat-purple-600); color: var(--color-cat-purple-800); background-color: var(--color-cat-purple-50); border-color: var(--color-cat-purple-600); }
+.c-teal   { fill: var(--color-cat-teal-50);   stroke: var(--color-cat-teal-600);   color: var(--color-cat-teal-800);   background-color: var(--color-cat-teal-50);   border-color: var(--color-cat-teal-600); }
+.c-coral  { fill: var(--color-cat-coral-50);  stroke: var(--color-cat-coral-600);  color: var(--color-cat-coral-800);  background-color: var(--color-cat-coral-50);  border-color: var(--color-cat-coral-600); }
+.c-pink   { fill: var(--color-cat-pink-50);   stroke: var(--color-cat-pink-600);   color: var(--color-cat-pink-800);   background-color: var(--color-cat-pink-50);   border-color: var(--color-cat-pink-600); }
+.c-gray   { fill: var(--color-cat-gray-50);   stroke: var(--color-cat-gray-600);   color: var(--color-cat-gray-800);   background-color: var(--color-cat-gray-50);   border-color: var(--color-cat-gray-600); }
+.c-blue text, .c-green text, .c-amber text, .c-red text,
+.c-purple text, .c-teal text, .c-coral text, .c-pink text, .c-gray text { fill: currentColor; stroke: none; }
+@media (prefers-color-scheme: dark) {
+  :root {
+  --color-brand-primary: #E8E9EA;
+  --color-brand-secondary: #4a9eff;
+  --color-bg-page: #1A1B1C;
+  --color-bg-surface: #232425;
+  --color-bg-subtle: #2A2B2C;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B8BBBF;
+  --color-text-tertiary: #868B92;
+  --color-text-disabled: #4A4C4F;
+  --color-text-link: #8bb8ff;
+  --color-text-on-brand: #1A1B1C;
+  --color-border-default: #3A3B3C;
+  --color-border-strong: #4A4C4F;
+  --color-border-subtle: #2E2F30;
+  --color-border-brand: #4a9eff;
+  --color-border-error: #f87171;
+  --color-border-success: #34d399;
+  }
+  .c-blue { fill: var(--color-cat-blue-800); stroke: var(--color-cat-blue-200); color: var(--color-cat-blue-100); background-color: var(--color-cat-blue-800); border-color: var(--color-cat-blue-200); }
+  .c-green { fill: var(--color-cat-green-800); stroke: var(--color-cat-green-200); color: var(--color-cat-green-100); background-color: var(--color-cat-green-800); border-color: var(--color-cat-green-200); }
+  .c-amber { fill: var(--color-cat-amber-800); stroke: var(--color-cat-amber-200); color: var(--color-cat-amber-100); background-color: var(--color-cat-amber-800); border-color: var(--color-cat-amber-200); }
+  .c-red { fill: var(--color-cat-red-800); stroke: var(--color-cat-red-200); color: var(--color-cat-red-100); background-color: var(--color-cat-red-800); border-color: var(--color-cat-red-200); }
+  .c-purple { fill: var(--color-cat-purple-800); stroke: var(--color-cat-purple-200); color: var(--color-cat-purple-100); background-color: var(--color-cat-purple-800); border-color: var(--color-cat-purple-200); }
+  .c-teal { fill: var(--color-cat-teal-800); stroke: var(--color-cat-teal-200); color: var(--color-cat-teal-100); background-color: var(--color-cat-teal-800); border-color: var(--color-cat-teal-200); }
+  .c-coral { fill: var(--color-cat-coral-800); stroke: var(--color-cat-coral-200); color: var(--color-cat-coral-100); background-color: var(--color-cat-coral-800); border-color: var(--color-cat-coral-200); }
+  .c-pink { fill: var(--color-cat-pink-800); stroke: var(--color-cat-pink-200); color: var(--color-cat-pink-100); background-color: var(--color-cat-pink-800); border-color: var(--color-cat-pink-200); }
+  .c-gray { fill: var(--color-cat-gray-800); stroke: var(--color-cat-gray-200); color: var(--color-cat-gray-100); background-color: var(--color-cat-gray-800); border-color: var(--color-cat-gray-200); }
+}
+html[data-theme="dark"] {
+  --color-brand-primary: #E8E9EA;
+  --color-brand-secondary: #4a9eff;
+  --color-bg-page: #1A1B1C;
+  --color-bg-surface: #232425;
+  --color-bg-subtle: #2A2B2C;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B8BBBF;
+  --color-text-tertiary: #868B92;
+  --color-text-disabled: #4A4C4F;
+  --color-text-link: #8bb8ff;
+  --color-text-on-brand: #1A1B1C;
+  --color-border-default: #3A3B3C;
+  --color-border-strong: #4A4C4F;
+  --color-border-subtle: #2E2F30;
+  --color-border-brand: #4a9eff;
+  --color-border-error: #f87171;
+  --color-border-success: #34d399;
+}
+html[data-theme="dark"] .c-blue { fill: var(--color-cat-blue-800); stroke: var(--color-cat-blue-200); color: var(--color-cat-blue-100); background-color: var(--color-cat-blue-800); border-color: var(--color-cat-blue-200); }
+html[data-theme="dark"] .c-green { fill: var(--color-cat-green-800); stroke: var(--color-cat-green-200); color: var(--color-cat-green-100); background-color: var(--color-cat-green-800); border-color: var(--color-cat-green-200); }
+html[data-theme="dark"] .c-amber { fill: var(--color-cat-amber-800); stroke: var(--color-cat-amber-200); color: var(--color-cat-amber-100); background-color: var(--color-cat-amber-800); border-color: var(--color-cat-amber-200); }
+html[data-theme="dark"] .c-red { fill: var(--color-cat-red-800); stroke: var(--color-cat-red-200); color: var(--color-cat-red-100); background-color: var(--color-cat-red-800); border-color: var(--color-cat-red-200); }
+html[data-theme="dark"] .c-purple { fill: var(--color-cat-purple-800); stroke: var(--color-cat-purple-200); color: var(--color-cat-purple-100); background-color: var(--color-cat-purple-800); border-color: var(--color-cat-purple-200); }
+html[data-theme="dark"] .c-teal { fill: var(--color-cat-teal-800); stroke: var(--color-cat-teal-200); color: var(--color-cat-teal-100); background-color: var(--color-cat-teal-800); border-color: var(--color-cat-teal-200); }
+html[data-theme="dark"] .c-coral { fill: var(--color-cat-coral-800); stroke: var(--color-cat-coral-200); color: var(--color-cat-coral-100); background-color: var(--color-cat-coral-800); border-color: var(--color-cat-coral-200); }
+html[data-theme="dark"] .c-pink { fill: var(--color-cat-pink-800); stroke: var(--color-cat-pink-200); color: var(--color-cat-pink-100); background-color: var(--color-cat-pink-800); border-color: var(--color-cat-pink-200); }
+html[data-theme="dark"] .c-gray { fill: var(--color-cat-gray-800); stroke: var(--color-cat-gray-200); color: var(--color-cat-gray-100); background-color: var(--color-cat-gray-800); border-color: var(--color-cat-gray-200); }
+:root { color-scheme: light; }
+html, body { margin: 0; padding: 0; background: transparent !important; box-sizing: border-box;
+             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', 'Noto Sans JP', 'Noto Sans KR', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; }
+*, *::before, *::after { box-sizing: inherit; }
+svg, svg text, svg tspan { font-family: inherit; }
+</style>
+<script>
+function sendPrompt(text) {
+  window.parent.postMessage(
+    { type: 'genspark_visualize_send_prompt', text: String(text) }, '*'
+  );
+}
+function _reportHeight() {
+  var h = Math.max(
+    document.body ? document.body.scrollHeight : 0,
+    document.documentElement ? document.documentElement.scrollHeight : 0,
+    100
+  );
+  window.parent.postMessage({ type: 'genspark_visualize_height', height: h }, '*');
+}
+window.addEventListener('load', function() {
+  _reportHeight();
+  if (window.ResizeObserver) {
+    new ResizeObserver(_reportHeight).observe(document.body);
+  }
+});
+window.addEventListener('resize', _reportHeight);
+
+// ── PNG export (rasterize the rendered widget inside the iframe) ─────────────
+// Runs here because sandbox="allow-scripts" (no allow-same-origin) makes the
+// iframe DOM unreachable from the parent. Clone <body>, swap each <canvas>
+// (Chart.js) for a snapshot <img>, inline the document styles with dark-scheme
+// rules stripped for a deterministic light export, wrap in <svg><foreignObject>,
+// and rasterize via a data: URL (a Blob URL would taint the canvas in Chromium).
+function _gsExportFont() { return "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', 'Noto Sans JP', 'Noto Sans KR', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'"; }
+function _gsCollectStyles() {
+  var out = '';
+  var s = document.querySelectorAll('style');
+  for (var i = 0; i < s.length; i++) { out += (s[i].textContent || '') + '\n'; }
+  return out;
+}
+function _gsStripDarkMedia(css) {
+  var marker = '@media (prefers-color-scheme: dark)';
+  var idx = css.indexOf(marker);
+  while (idx !== -1) {
+    var brace = css.indexOf('{', idx);
+    if (brace === -1) { css = css.slice(0, idx); break; }
+    var depth = 1, j = brace + 1;
+    while (j < css.length && depth > 0) {
+      var ch = css.charAt(j);
+      if (ch === '{') depth++; else if (ch === '}') depth--;
+      j++;
+    }
+    css = css.slice(0, idx) + css.slice(j);
+    idx = css.indexOf(marker);
+  }
+  return css;
+}
+function _gsCleanup(node) {
+  var scripts = node.querySelectorAll('script');
+  for (var i = 0; i < scripts.length; i++) {
+    if (scripts[i].parentNode) scripts[i].parentNode.removeChild(scripts[i]);
+  }
+  var nameRe = /^[A-Za-z_:][A-Za-z0-9_:.-]*$/;
+  var els = node.querySelectorAll('*');
+  for (var k = 0; k < els.length; k++) {
+    var attrs = els[k].attributes;
+    for (var a = attrs.length - 1; a >= 0; a--) {
+      if (!nameRe.test(attrs[a].name)) els[k].removeAttribute(attrs[a].name);
+    }
+  }
+}
+function _gsSubstituteCanvases(live, clone) {
+  var lc = live.querySelectorAll('canvas');
+  var cc = clone.querySelectorAll('canvas');
+  for (var i = 0; i < lc.length && i < cc.length; i++) {
+    var data = lc[i].toDataURL('image/png');
+    var img = document.createElement('img');
+    img.setAttribute('src', data);
+    img.setAttribute('style', (cc[i].getAttribute('style') || '') +
+      ';width:' + lc[i].offsetWidth + 'px;height:' + lc[i].offsetHeight + 'px');
+    if (cc[i].parentNode) cc[i].parentNode.replaceChild(img, cc[i]);
+  }
+}
+function _gsPostPng(id, dataUrl, error) {
+  window.parent.postMessage(
+    { type: 'genspark_visualize_png', id: id, dataUrl: dataUrl || null, error: error || null },
+    '*'
+  );
+}
+function _gsRasterize(id, scale) {
+  try {
+    scale = scale || 2;
+    var PAD = 16;  // breathing room so content never sits flush against the edge
+    var W = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth, 1);
+    var H = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, 1);
+    var bodyClone = document.body.cloneNode(true);
+    _gsSubstituteCanvases(document.body, bodyClone);
+    _gsCleanup(bodyClone);
+    var wrapper = document.createElement('div');
+    wrapper.setAttribute('style',
+      'font-family:' + _gsExportFont() + ';box-sizing:border-box;width:' + W + 'px');
+    while (bodyClone.firstChild) { wrapper.appendChild(bodyClone.firstChild); }
+    var inner = new XMLSerializer().serializeToString(wrapper);
+    var styleTag = '<style>' + _gsStripDarkMedia(_gsCollectStyles()) +
+      ' svg, svg text, svg tspan { font-family:' + _gsExportFont() + '; }</style>';
+    var CW = W + PAD * 2, CH = H + PAD * 2;
+    var SW = Math.round(CW * scale), SH = Math.round(CH * scale);
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + SW +
+      '" height="' + SH + '" viewBox="0 0 ' + CW + ' ' + CH + '">' +
+      '<foreignObject x="' + PAD + '" y="' + PAD + '" width="' + W + '" height="' + H + '">' +
+      '<div xmlns="http://www.w3.org/1999/xhtml">' + styleTag + inner + '</div>' +
+      '</foreignObject></svg>';
+    var img = new Image();
+    img.onload = function() {
+      try {
+        var cv = document.createElement('canvas');
+        cv.width = SW; cv.height = SH;
+        var ctx = cv.getContext('2d');
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, SW, SH);
+        ctx.drawImage(img, 0, 0);
+        _gsPostPng(id, cv.toDataURL('image/png'), null);
+      } catch (e) { _gsPostPng(id, null, 'tainted'); }
+    };
+    img.onerror = function() { _gsPostPng(id, null, 'image_error'); };
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  } catch (e) {
+    _gsPostPng(id, null,
+      (e && e.name === 'SecurityError') ? 'tainted' : String((e && e.message) || e));
+  }
+}
+window.addEventListener('message', function(ev) {
+  var d = ev.data || {};
+  if (!d || d.type !== 'genspark_visualize_request_png') return;
+  var run = function() { _gsRasterize(d.id, d.scale); };
+  if (document.fonts && document.fonts.ready && document.fonts.ready.then) {
+    document.fonts.ready.then(function() {
+      if (window.requestAnimationFrame) window.requestAnimationFrame(run);
+      else window.setTimeout(run, 0);
+    });
+  } else if (window.requestAnimationFrame) {
+    window.requestAnimationFrame(run);
+  } else {
+    window.setTimeout(run, 0);
+  }
+});
+</script>
+</head>
+<body><style>
+  .kt-app {
+    --kt-purple: #7B6EF6;
+    --kt-purple-dark: #5B4EE0;
+    --kt-purple-light: #E8E4FF;
+    --kt-yellow: #F5E94A;
+    --kt-red: #E85D75;
+    --kt-bg: #FAFAFF;
+    font-size: var(--text-body);
+    color: #2A2340;
+    padding: 0;
+  }
+  .kt-paper { background: var(--kt-bg); border-radius: var(--radius-12); padding: var(--space-24); position: relative; overflow: hidden; border: 1px solid var(--color-border-subtle); }
+  .kt-paper::before { content: "★"; position: absolute; top: 12px; right: 20px; color: var(--kt-purple-light); font-size: 40px; transform: rotate(15deg); }
+  .kt-paper::after { content: "✦"; position: absolute; bottom: 12px; left: 20px; color: var(--kt-purple-light); font-size: 30px; }
+
+  .kt-hero-promo-banner { background: linear-gradient(90deg, var(--kt-yellow) 0%, #FFD84A 100%); color: #2A2340; padding: 10px 20px; border-radius: 999px; display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: var(--text-small); margin-bottom: var(--space-16); transform: rotate(-2deg); box-shadow: 2px 2px 0 var(--kt-purple-dark); }
+  .kt-hero-promo-banner .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: #E85D75; animation: pulse 1.5s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.3); } }
+
+  .kt-hero-title { font-size: 44px; font-weight: 900; letter-spacing: -1px; color: var(--kt-purple); text-align: center; line-height: 1.05; margin: 0 0 var(--space-8); text-shadow: 3px 3px 0 var(--kt-purple-light); }
+  .kt-hero-sub { text-align: center; font-size: var(--text-body); color: #5B5470; margin: 0 0 var(--space-20); }
+
+  .kt-logo-footer { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: var(--space-24); padding-top: var(--space-16); border-top: 1px dashed var(--kt-purple-light); }
+  .kt-logo-svg { display: flex; align-items: center; gap: 8px; }
+  .kt-logo-mark { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #E85D75 0%, #C13584 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-size: 18px; letter-spacing: -1px; box-shadow: 2px 2px 0 rgba(0,0,0,0.1); }
+  .kt-logo-text-wrap { display: flex; flex-direction: column; align-items: flex-start; }
+  .kt-logo-brand { font-size: 15px; font-weight: 900; color: #E85D75; letter-spacing: 0.5px; }
+  .kt-logo-sub { font-size: 10px; color: #5B5470; font-weight: 600; letter-spacing: 0.5px; }
+
+  .kt-btn { background: var(--kt-purple); color: #fff; border: none; padding: 14px 28px; border-radius: 999px; font-weight: 700; font-size: var(--text-body); cursor: pointer; min-height: 48px; box-shadow: 3px 3px 0 var(--kt-purple-dark); transition: all 0.15s; }
+  .kt-btn:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--kt-purple-dark); }
+  .kt-btn:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--kt-purple-dark); }
+  .kt-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .kt-btn-ghost { background: #fff; color: var(--kt-purple); border: 2px solid var(--kt-purple); }
+  .kt-btn-full { width: 100%; }
+
+  .kt-section { display: none; padding: var(--space-16) 0; }
+  .kt-section.active { display: block; }
+  .kt-progress { height: 8px; background: var(--kt-purple-light); border-radius: 999px; overflow: hidden; margin: var(--space-16) 0 var(--space-20); }
+  .kt-progress-bar { height: 100%; background: var(--kt-purple); width: 0%; transition: width .3s; }
+  .kt-qnum { display: inline-block; background: var(--kt-purple); color: #fff; padding: 4px 12px; border-radius: 999px; font-weight: 700; font-size: var(--text-caption); margin-bottom: var(--space-12); }
+  .kt-qtitle { font-size: var(--text-h3); font-weight: 800; margin: 0 0 var(--space-20); line-height: 1.35; }
+  .kt-opts { display: flex; flex-direction: column; gap: 10px; }
+  .kt-opt { background: #fff; border: 2px solid var(--kt-purple-light); padding: var(--space-16); border-radius: var(--radius-12); cursor: pointer; text-align: left; font-size: var(--text-body); color: #2A2340; min-height: 48px; font-weight: 600; transition: all 0.15s; }
+  .kt-opt:hover { border-color: var(--kt-purple); background: var(--kt-purple-light); transform: translateX(4px); }
+
+  .kt-card { background: #fff; border: 2px solid var(--kt-purple-light); border-radius: var(--radius-12); padding: var(--space-24); margin-bottom: var(--space-16); position: relative; }
+  .kt-card-title { font-size: var(--text-h4); font-weight: 800; margin: 0 0 var(--space-12); }
+
+  .kt-result-hero { background: linear-gradient(135deg, var(--kt-purple-light) 0%, #F5EEFF 100%); border: 2px solid var(--kt-purple-light); border-radius: var(--radius-12); padding: var(--space-24); margin-bottom: var(--space-16); text-align: center; }
+  .kt-result-emoji { font-size: 48px; margin-bottom: 8px; }
+  .kt-result-type { font-size: var(--text-caption); color: #5B5470; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .kt-result-title-big { font-size: 28px; font-weight: 900; color: var(--kt-purple); margin: 0 0 8px; line-height: 1.3; }
+  .kt-result-oneliner { font-size: var(--text-body); color: #2A2340; font-weight: 600; font-style: italic; margin: 8px 0 0; padding: 12px; background: rgba(255,255,255,0.5); border-radius: var(--radius-8); }
+
+  .kt-section-heading { font-size: var(--text-body); font-weight: 800; color: var(--kt-purple); margin: 0 0 var(--space-12); display: flex; align-items: center; gap: 6px; }
+  .kt-persona-desc { color: #2A2340; line-height: 1.7; font-size: var(--text-body); margin: 0; }
+  .kt-persona-desc + .kt-persona-desc { margin-top: 10px; }
+  .kt-keyword-list { list-style: none; padding: 0; margin: 0; }
+  .kt-keyword-list li { padding: 8px 0 8px 24px; position: relative; color: #2A2340; font-size: var(--text-body); line-height: 1.5; border-bottom: 1px dashed var(--kt-purple-light); }
+  .kt-keyword-list li:last-child { border-bottom: none; }
+  .kt-keyword-list li::before { content: "🌸"; position: absolute; left: 0; top: 8px; }
+
+  .kt-reason { padding: var(--space-16) 0; border-bottom: 1px dashed var(--kt-purple-light); }
+  .kt-reason:last-child { border-bottom: none; }
+  .kt-reason-num { display: inline-block; width: 28px; height: 28px; border-radius: 50%; background: var(--kt-purple); color: #fff; text-align: center; line-height: 28px; font-weight: 800; font-size: var(--text-small); margin-right: 8px; }
+  .kt-reason-title { font-size: var(--text-body); font-weight: 800; margin: 0 0 6px; color: #2A2340; display: flex; align-items: center; }
+  .kt-reason-desc { color: #5B5470; line-height: 1.6; font-size: var(--text-small); margin: 0 0 0 36px; }
+
+  .kt-spec-table { width: 100%; border-collapse: collapse; margin-top: var(--space-8); }
+  .kt-spec-table td { padding: 10px 8px; border-bottom: 1px solid var(--kt-purple-light); font-size: var(--text-small); vertical-align: top; }
+  .kt-spec-table td:first-child { width: 90px; font-weight: 800; color: var(--kt-purple); }
+  .kt-spec-table td:last-child { color: #2A2340; line-height: 1.5; }
+
+  .kt-conclusion { background: var(--kt-purple-light); border: 2px dashed var(--kt-purple); border-radius: var(--radius-12); padding: var(--space-20); text-align: center; font-size: var(--text-body); line-height: 1.7; color: #2A2340; font-weight: 500; }
+  .kt-conclusion b { color: var(--kt-purple); font-weight: 800; display: block; margin-bottom: 8px; font-size: var(--text-h4); }
+
+  .kt-choice-row { display: flex; flex-direction: column; gap: 10px; margin-top: var(--space-16); }
+  .kt-model-picker { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  @media (max-width: 480px) { .kt-model-picker { grid-template-columns: 1fr; } }
+  .kt-model-btn { background: #fff; border: 2px solid var(--kt-purple-light); padding: 14px 10px; border-radius: var(--radius-12); cursor: pointer; font-weight: 700; color: #2A2340; text-align: center; transition: all 0.15s; }
+  .kt-model-btn:hover { border-color: var(--kt-purple); background: var(--kt-purple-light); }
+  .kt-model-btn.active { border-color: var(--kt-purple); background: var(--kt-purple); color: #fff; }
+  .kt-model-btn small { display: block; font-weight: 500; font-size: 11px; opacity: 0.8; margin-top: 2px; }
+
+  /* Quote system */
+  .kt-quote-model-header { background: linear-gradient(135deg, var(--kt-purple) 0%, var(--kt-purple-dark) 100%); color: #fff; padding: var(--space-16); border-radius: var(--radius-12); margin-bottom: var(--space-16); text-align: center; }
+  .kt-quote-model-header .label { font-size: var(--text-caption); opacity: 0.85; margin-bottom: 4px; letter-spacing: 1px; }
+  .kt-quote-model-header .name { font-size: var(--text-h4); font-weight: 800; }
+  .kt-quote-model-header .cap { font-size: var(--text-small); opacity: 0.9; margin-top: 4px; }
+
+  .kt-code-input-wrap { background: linear-gradient(135deg, #FFF8E1 0%, #FFF3C4 100%); border: 2px dashed var(--kt-yellow); border-radius: var(--radius-12); padding: var(--space-16); margin-bottom: var(--space-16); }
+  .kt-code-title { font-weight: 800; font-size: var(--text-body); margin: 0 0 6px; color: #2A2340; }
+  .kt-code-desc { font-size: var(--text-caption); color: #5B5470; margin: 0 0 var(--space-12); line-height: 1.5; }
+  .kt-code-row { display: flex; gap: 8px; align-items: stretch; }
+  .kt-code-row input { flex: 1; padding: 12px 14px; border: 2px solid #E8DA6E; border-radius: var(--radius-8); font-size: var(--text-body); background: #fff; color: #2A2340; min-height: 44px; font-family: 'Menlo', monospace; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; }
+  .kt-code-row input:focus { outline: none; border-color: var(--kt-purple); }
+  .kt-code-btn { background: #2A2340; color: #fff; border: none; padding: 12px 20px; border-radius: var(--radius-8); font-weight: 700; cursor: pointer; white-space: nowrap; min-height: 44px; }
+  .kt-code-status { margin-top: 10px; padding: 8px 12px; border-radius: var(--radius-8); font-size: var(--text-small); font-weight: 700; text-align: center; display: none; }
+  .kt-code-status.success { background: #D4EDDA; color: #155724; display: block; }
+  .kt-code-status.error { background: #FFE0E6; color: #C13584; display: block; }
+
+  .kt-installment-picker { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: var(--space-16); }
+  .kt-install-btn { background: #fff; border: 2px solid var(--kt-purple-light); padding: 12px 6px; border-radius: var(--radius-12); cursor: pointer; font-weight: 700; color: #2A2340; text-align: center; font-size: var(--text-small); transition: all 0.15s; }
+  .kt-install-btn:hover { border-color: var(--kt-purple); background: var(--kt-purple-light); }
+  .kt-install-btn.active { border-color: var(--kt-purple); background: var(--kt-purple); color: #fff; }
+  .kt-install-btn small { display: block; font-weight: 500; font-size: 10px; opacity: 0.8; margin-top: 2px; }
+
+  .kt-price-breakdown { width: 100%; border-collapse: collapse; }
+  .kt-price-breakdown td { padding: 10px 4px; border-bottom: 1px dashed var(--kt-purple-light); font-size: var(--text-small); }
+  .kt-price-breakdown td:last-child { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+  .kt-price-breakdown .discount-row td { color: var(--kt-red); font-weight: 700; }
+  .kt-price-breakdown .code-discount { background: #FFF8E1; }
+  .kt-price-breakdown .code-discount td { color: #E67E22; font-weight: 800; border-bottom: 1px solid #FFC107; }
+  .kt-price-breakdown .subtotal-row { background: var(--kt-purple-light); }
+  .kt-price-breakdown .subtotal-row td { font-weight: 800; color: var(--kt-purple); border-bottom: 2px solid var(--kt-purple); }
+
+  .kt-total-highlight { background: linear-gradient(135deg, var(--kt-red) 0%, #C13584 100%); color: #fff; padding: var(--space-16); border-radius: var(--radius-12); margin: var(--space-16) 0; text-align: center; box-shadow: 3px 3px 0 rgba(0,0,0,0.1); }
+  .kt-total-highlight .label { font-size: var(--text-small); opacity: 0.9; margin-bottom: 4px; }
+  .kt-total-highlight .amount { font-size: 32px; font-weight: 900; letter-spacing: -1px; }
+  .kt-total-highlight .sub { font-size: var(--text-caption); opacity: 0.85; margin-top: 4px; }
+
+  .kt-monthly-highlight { background: linear-gradient(135deg, var(--kt-purple) 0%, var(--kt-purple-dark) 100%); color: #fff; padding: var(--space-20); border-radius: var(--radius-12); margin: var(--space-16) 0; text-align: center; }
+  .kt-monthly-highlight .label { font-size: var(--text-small); opacity: 0.9; margin-bottom: 4px; }
+  .kt-monthly-highlight .amount { font-size: 36px; font-weight: 900; letter-spacing: -1px; }
+  .kt-monthly-highlight .breakdown { font-size: var(--text-caption); opacity: 0.9; margin-top: 6px; }
+
+  .kt-scenario-title { font-size: var(--text-body); font-weight: 800; color: #2A2340; margin: var(--space-20) 0 var(--space-12); padding-bottom: 6px; border-bottom: 2px solid var(--kt-purple); }
+  .kt-scenario-table { width: 100%; border-collapse: collapse; }
+  .kt-scenario-table th { background: var(--kt-purple); color: #fff; padding: 10px 8px; font-size: var(--text-caption); font-weight: 700; text-align: center; }
+  .kt-scenario-table th:first-child { border-radius: var(--radius-8) 0 0 0; text-align: left; padding-left: 12px; }
+  .kt-scenario-table th:last-child { border-radius: 0 var(--radius-8) 0 0; }
+  .kt-scenario-table td { padding: 12px 8px; font-size: var(--text-small); border-bottom: 1px solid var(--kt-purple-light); text-align: right; font-variant-numeric: tabular-nums; }
+  .kt-scenario-table td:first-child { text-align: left; font-weight: 700; color: #2A2340; padding-left: 12px; }
+  .kt-scenario-table tr.highlight td { background: #FFF8E1; font-weight: 800; color: var(--kt-purple); }
+  .kt-scenario-table .final-cell { color: var(--kt-purple); font-weight: 900; font-size: var(--text-body); }
+
+  /* Share buttons */
+  .kt-share-wrap { margin-top: var(--space-20); padding-top: var(--space-16); border-top: 2px dashed var(--kt-purple-light); }
+  .kt-share-title { font-weight: 800; font-size: var(--text-body); margin: 0 0 var(--space-12); color: #2A2340; }
+  .kt-share-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 480px) { .kt-share-btns { grid-template-columns: 1fr; } }
+  .kt-share-btn { padding: 14px; border-radius: var(--radius-12); border: none; font-weight: 700; cursor: pointer; font-size: var(--text-small); min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.15s; }
+  .kt-share-btn:active { transform: scale(0.97); }
+  .kt-share-download { background: var(--kt-purple); color: #fff; box-shadow: 2px 2px 0 var(--kt-purple-dark); }
+  .kt-share-copy { background: var(--kt-yellow); color: #2A2340; box-shadow: 2px 2px 0 #C9BD3D; }
+  .kt-share-kakao { background: #FEE500; color: #191919; box-shadow: 2px 2px 0 #C9B300; }
+  .kt-share-native { background: #fff; color: var(--kt-purple); border: 2px solid var(--kt-purple); }
+
+  /* Form */
+  .kt-form-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: var(--space-12); }
+  .kt-form-row label { font-size: var(--text-small); font-weight: 600; color: #5B5470; }
+  .kt-form-row label .req { color: #E85D75; margin-left: 2px; }
+  .kt-form-row input, .kt-form-row select { padding: 12px 14px; border: 2px solid var(--kt-purple-light); border-radius: var(--radius-8); font-size: var(--text-body); background: #fff; color: #2A2340; min-height: 44px; font-family: inherit; }
+  .kt-form-row input:focus, .kt-form-row select:focus { outline: none; border-color: var(--kt-purple); }
+  .kt-form-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 480px) { .kt-form-grid2 { grid-template-columns: 1fr; } }
+  .kt-consent-notice { background: var(--kt-purple-light); border-radius: var(--radius-8); padding: 10px 12px; margin-top: var(--space-12); font-size: 11px; color: #5B5470; line-height: 1.5; }
+  .kt-consent-notice b { color: var(--kt-purple); }
+
+  .kt-contact-list { display: flex; flex-direction: column; gap: 10px; }
+  .kt-contact-row { display: flex; align-items: center; gap: 12px; padding: 14px; background: #fff; border: 2px solid var(--kt-purple-light); border-radius: var(--radius-12); }
+  .kt-contact-icon { font-size: 22px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: var(--kt-purple-light); border-radius: 50%; flex-shrink: 0; }
+  .kt-contact-label { font-size: var(--text-caption); color: #5B5470; }
+  .kt-contact-value { font-size: var(--text-body); font-weight: 700; }
+  .kt-contact-tel { font-size: var(--text-small); color: var(--kt-purple); font-weight: 700; margin-top: 2px; }
+
+  /* Store district grouping */
+  .kt-district-title {
+    font-weight: 800; color: var(--kt-purple); font-size: var(--text-small);
+    margin: var(--space-16) 0 var(--space-8); padding: 4px 10px;
+    background: var(--kt-purple-light); border-radius: 999px;
+    display: inline-block; letter-spacing: 1px;
+  }
+  .kt-district-title:first-child { margin-top: 0; }
+
+  .kt-store { position: relative; padding: 14px; background: #fff; border: 2px solid var(--kt-purple-light); border-radius: var(--radius-12); cursor: pointer; user-select: none; display: flex; align-items: flex-start; gap: 12px; transition: border-color 0.15s; -webkit-tap-highlight-color: transparent; }
+  .kt-store:hover { border-color: var(--kt-purple); }
+  .kt-store.showmap { border-color: var(--kt-purple); background: var(--kt-purple-light); }
+  .kt-store-info { flex: 1; min-width: 0; }
+  .kt-store-hint { font-size: 10px; color: #9B94B4; margin-top: 4px; }
+
+  .kt-map-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(42, 35, 64, 0.7); display: none; align-items: center; justify-content: center; z-index: 9999; padding: 20px; pointer-events: none; }
+  .kt-map-overlay.active { display: flex; }
+  .kt-map-box { background: #fff; border-radius: var(--radius-12); padding: 12px; width: 100%; max-width: 500px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); border: 3px solid var(--kt-purple); }
+  .kt-map-title { font-weight: 800; font-size: var(--text-body); margin: 4px 8px 10px; color: var(--kt-purple); }
+  .kt-map-address { font-size: var(--text-small); color: #5B5470; margin: 4px 8px 8px; }
+  .kt-map-canvas { width: 100%; height: 320px; border-radius: var(--radius-8); overflow: hidden; background: #F5F5F5; border: 1px solid var(--kt-purple-light); }
+  .kt-map-canvas iframe { width: 100%; height: 100%; border: 0; }
+  .kt-map-hint { text-align: center; margin-top: 8px; font-size: var(--text-caption); color: #9B94B4; font-style: italic; }
+
+  .kt-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(42, 35, 64, 0.7); display: none; align-items: center; justify-content: center; z-index: 10000; padding: 20px; }
+  .kt-modal.active { display: flex; }
+  .kt-modal-box { background: #fff; border-radius: var(--radius-12); padding: 32px 24px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.4); border: 3px solid var(--kt-purple); }
+  .kt-modal-icon { font-size: 60px; margin-bottom: 12px; }
+  .kt-modal-title { font-size: var(--text-h3); font-weight: 900; color: var(--kt-purple); margin: 0 0 12px; }
+  .kt-modal-desc { color: #5B5470; line-height: 1.6; margin: 0 0 var(--space-20); font-size: var(--text-body); }
+  .kt-modal-info { background: var(--kt-purple-light); border-radius: var(--radius-8); padding: 12px; margin-bottom: var(--space-20); font-size: var(--text-small); color: #2A2340; text-align: left; }
+  .kt-modal-info div { margin: 4px 0; }
+  .kt-modal-info b { color: var(--kt-purple); }
+
+  .fold-panel-r { transform-origin: 50% 50%; animation: foldAnim 3s ease-in-out infinite; }
+  @keyframes foldAnim { 0%, 100% { transform: perspective(400px) rotateY(0deg); } 50% { transform: perspective(400px) rotateY(-40deg); } }
+
+  /* Toast */
+  .kt-toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+    background: #2A2340; color: #fff; padding: 12px 20px;
+    border-radius: 999px; font-weight: 700; font-size: var(--text-small);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3); z-index: 10001;
+    opacity: 0; transition: opacity 0.3s; pointer-events: none;
+  }
+  .kt-toast.show { opacity: 1; }
+</style>
+
+<div class="kt-app">
+
+  <!-- HERO -->
+  <section id="k-hero" class="kt-section active">
+    <div class="kt-paper" style="text-align:center;">
+      <div class="kt-hero-promo-banner">
+        <span class="pulse-dot"></span>
+        🎓 학생 프로모션 진행 중
+      </div>
+      <h1 class="kt-hero-title">나의 폴더블은?</h1>
+      <p class="kt-hero-sub">간단한 6문항으로 알아보는 나에게 딱 맞는<br/><b>Galaxy Z Flip 8 · Z Fold 8 · Z Fold Ultra</b></p>
+      <div style="margin: var(--space-16) 0;">
+        <svg width="120" height="120" viewBox="0 0 120 120" style="margin:0 auto;">
+          <rect x="20" y="15" width="35" height="90" rx="4" fill="#E8E4FF" stroke="#7B6EF6" stroke-width="2"/>
+          <rect x="25" y="22" width="25" height="70" rx="2" fill="#fff"/>
+          <g class="fold-panel-r">
+            <rect x="60" y="15" width="35" height="90" rx="4" fill="#7B6EF6"/>
+            <circle cx="70" cy="27" r="4" fill="#2A2340"/>
+            <circle cx="80" cy="27" r="4" fill="#2A2340"/>
+          </g>
+        </svg>
+      </div>
+      <button class="kt-btn" onclick="ktStart()">테스트 시작하기 →</button>
+      <div class="kt-logo-footer">
+        <div class="kt-logo-svg">
+          <div class="kt-logo-mark">kt</div>
+          <div class="kt-logo-text-wrap">
+            <div class="kt-logo-brand">kt</div>
+            <div class="kt-logo-sub">서대문지사</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="k-quiz" class="kt-section">
+    <div class="kt-paper">
+      <div class="kt-progress"><div id="k-bar" class="kt-progress-bar"></div></div>
+      <span class="kt-qnum" id="k-qnum">Q1 / 6</span>
+      <h2 class="kt-qtitle" id="k-qtitle">질문</h2>
+      <div class="kt-opts" id="k-opts"></div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="k-result" class="kt-section">
+    <div id="k-result-content"></div>
+
+    <div class="kt-card">
+      <div class="kt-card-title">💰 견적을 확인해볼까요?</div>
+      <div class="kt-choice-row">
+        <button class="kt-btn kt-btn-full" onclick="ktShowQuoteRecommended()">① 추천받은 모델로 견적 보기</button>
+        <button class="kt-btn kt-btn-ghost kt-btn-full" onclick="ktShowOtherPicker()">② 다른 모델 견적 확인하기</button>
+      </div>
+      <div id="k-other-picker" style="display:none; margin-top: var(--space-16);">
+        <p style="font-size:var(--text-small); color:#5B5470; margin: 0 0 10px;">보고 싶은 모델을 선택하세요</p>
+        <div class="kt-model-picker">
+          <button class="kt-model-btn" data-model="flip" onclick="ktPickModel('flip', this)">Z Flip 8<small>플립</small></button>
+          <button class="kt-model-btn" data-model="fold" onclick="ktPickModel('fold', this)">Z Fold 8<small>와이드</small></button>
+          <button class="kt-model-btn" data-model="ultra" onclick="ktPickModel('ultra', this)">Fold Ultra<small>울트라</small></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUOTE CARD (with capture area) -->
+    <div class="kt-card" id="k-quote-card" style="display:none;">
+      <div id="quote-capture-area">
+        <div class="kt-card-title">💰 실시간 견적서</div>
+
+        <div class="kt-quote-model-header">
+          <div class="label">SELECTED MODEL</div>
+          <div class="name" id="qm-name">-</div>
+          <div class="cap">512GB · 12만원 요금제 기준</div>
+        </div>
+
+        <div class="kt-code-input-wrap">
+          <div class="kt-code-title">🎟️ 단과대 특판 할인 코드</div>
+          <p class="kt-code-desc">소속 단과대에서 발급받은 특판 코드를 입력하시면 추가 단말기 할인이 적용됩니다.</p>
+          <div class="kt-code-row">
+            <input type="text" id="q-code" placeholder="예: KTSD-XXXX" maxlength="9" />
+            <button class="kt-code-btn" onclick="applyCode()">적용</button>
+          </div>
+          <div class="kt-code-status" id="q-code-status"></div>
+        </div>
+
+        <div>
+          <div style="font-weight:700; font-size:var(--text-small); color:#5B5470; margin-bottom:8px;">📅 단말기 할부 개월 선택</div>
+          <div class="kt-installment-picker">
+            <button class="kt-install-btn active" data-mm="0" onclick="pickInstall(0, this)">즉납<small>일시불</small></button>
+            <button class="kt-install-btn" data-mm="24" onclick="pickInstall(24, this)">24개월<small>2년 할부</small></button>
+            <button class="kt-install-btn" data-mm="36" onclick="pickInstall(36, this)">36개월<small>3년 할부</small></button>
+          </div>
+        </div>
+
+        <div class="kt-scenario-title">💵 단말기 가격 계산</div>
+        <table class="kt-price-breakdown">
+          <tr><td>출고가 (512GB)</td><td id="qb-price">-</td></tr>
+          <tr class="discount-row"><td>사전예약 할인</td><td id="qb-sub1">-</td></tr>
+          <tr class="code-discount" id="qb-code-row" style="display:none;">
+            <td>🎟️ 특판 코드 할인</td>
+            <td id="qb-code-amount">-</td>
+          </tr>
+          <tr class="subtotal-row"><td>단말기 실 구매가</td><td id="qb-device-final">-</td></tr>
+        </table>
+
+        <div class="kt-total-highlight">
+          <div class="label">🎉 총 단말기 할인 금액</div>
+          <div class="amount" id="qb-total-discount">-</div>
+          <div class="sub" id="qb-total-discount-sub">사전예약 할인 + 특판 코드 할인</div>
+        </div>
+
+        <div class="kt-scenario-title" id="qb-monthly-title">📱 월 납부 금액 (즉납 기준)</div>
+        <div class="kt-monthly-highlight">
+          <div class="label">기본 월 요금 (요금제 25% 약정할인 적용)</div>
+          <div class="amount" id="qb-monthly-base">-</div>
+          <div class="breakdown" id="qb-monthly-breakdown">단말 할부 0원 + 90,000원 요금제</div>
+        </div>
+
+        <div class="kt-scenario-title">🎁 추가 할인 시 월 납부 금액</div>
+        <table class="kt-scenario-table">
+          <thead>
+            <tr>
+              <th>결합 시나리오</th>
+              <th>단말기 할부</th>
+              <th>요금제</th>
+              <th>월 납부</th>
+            </tr>
+          </thead>
+          <tbody id="qb-scenario-body"></tbody>
+        </table>
+
+        <p style="font-size:11px; color:#9B94B4; margin-top:14px; line-height:1.5;">
+          ※ 표시된 금액은 예시이며 실제 견적은 매장 상담 시 확정됩니다.<br/>
+          ※ 프리미엄 가족/싱글 결합: 요금제 25% 추가 할인, 제휴카드: 월 최대 21,000원 할인
+        </p>
+      </div>
+
+      <!-- ⭐ SHARE BUTTONS -->
+      <div class="kt-share-wrap">
+        <div class="kt-share-title">📤 견적서 저장 · 공유</div>
+        <div class="kt-share-btns">
+          <button class="kt-share-btn kt-share-download" onclick="downloadQuote()">
+            💾 이미지로 저장
+          </button>
+          <button class="kt-share-btn kt-share-kakao" onclick="shareKakao()">
+            💛 카카오톡 공유
+          </button>
+          <button class="kt-share-btn kt-share-copy" onclick="copyQuoteLink()">
+            🔗 링크 복사
+          </button>
+          <button class="kt-share-btn kt-share-native" onclick="shareNative()">
+            📱 다른 앱으로 공유
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="kt-card" id="k-consult" style="display:none;">
+      <div class="kt-card-title">📝 상담 신청하기</div>
+      <p style="font-size:var(--text-small); color:#5B5470; margin:0 0 var(--space-16);">
+        연락처와 학교 정보를 남겨주시면 담당자가 빠르게 연락드릴게요! 🎓
+      </p>
+      <div class="kt-form-row"><label>이름<span class="req">*</span></label><input type="text" id="f-name" placeholder="홍길동" /></div>
+      <div class="kt-form-row"><label>연락처<span class="req">*</span></label><input type="tel" id="f-phone" placeholder="010-0000-0000" /></div>
+      <div class="kt-form-grid2">
+        <div class="kt-form-row"><label>대학교<span class="req">*</span></label><input type="text" id="f-univ" placeholder="예: 연세대학교" /></div>
+        <div class="kt-form-row"><label>학과<span class="req">*</span></label><input type="text" id="f-dept" placeholder="예: 경영학과" /></div>
+      </div>
+      <div class="kt-form-row">
+        <label>견적 원하는 모델<span class="req">*</span></label>
+        <select id="f-model">
+          <option value="flip">Galaxy Z Flip 8</option>
+          <option value="fold">Galaxy Z Fold 8 (와이드)</option>
+          <option value="ultra">Galaxy Z Fold Ultra</option>
+        </select>
+      </div>
+      <button class="kt-btn kt-btn-full" id="submit-btn" onclick="ktSubmit()">상담 신청하기 →</button>
+      <div class="kt-consent-notice">
+        📢 <b>마케팅 정보 수신 동의 안내</b><br/>
+        상담 신청하기 버튼을 누르시면 KT 서대문지사의 프로모션·요금제·신규 단말 정보 등 <b>마케팅 정보 수신에 동의</b>하는 것으로 간주됩니다.
+      </div>
+    </div>
+
+    <!-- ⭐ 온라인 상담 채널 (실제 정보) -->
+    <div class="kt-card" id="k-online" style="display:none;">
+      <div class="kt-card-title">💬 온라인 상담 채널</div>
+      <div class="kt-contact-list">
+        <div class="kt-contact-row">
+          <span class="kt-contact-icon">☎️</span>
+          <div>
+            <div class="kt-contact-label">대표전화 · KT 서대문지사</div>
+            <div class="kt-contact-value">소현서 담당</div>
+            <div class="kt-contact-tel">📞 010-9777-2138</div>
+          </div>
+        </div>
+        <div class="kt-contact-row">
+          <span class="kt-contact-icon">📍</span>
+          <div>
+            <div class="kt-contact-label">은평 · 망원 오프라인 매장</div>
+            <div class="kt-contact-tel">📞 010-3331-5544</div>
+          </div>
+        </div>
+        <div class="kt-contact-row">
+          <span class="kt-contact-icon">📍</span>
+          <div>
+            <div class="kt-contact-label">서대문구 오프라인 매장</div>
+            <div class="kt-contact-tel">📞 02-3151-0158</div>
+          </div>
+        </div>
+        <div class="kt-contact-row">
+          <span class="kt-contact-icon">📍</span>
+          <div>
+            <div class="kt-contact-label">홍대 오프라인 매장</div>
+            <div class="kt-contact-tel">📞 02-338-9601</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⭐ 오프라인 매장 (구글맵) -->
+    <div class="kt-card" id="k-offline" style="display:none;">
+      <div class="kt-card-title">🏬 오프라인 상담 매장</div>
+      <p class="kt-store-hint" style="margin:0 0 var(--space-12);">
+        매장을 <b>꾹 누르면 구글맵</b>으로 위치 확인 가능합니다 (떼면 사라짐)
+      </p>
+      <div id="k-store-list"></div>
+    </div>
+
+    <div style="text-align:center; margin-top: var(--space-20);">
+      <button class="kt-btn kt-btn-ghost" onclick="ktRestart()">↻ 다시 테스트하기</button>
+    </div>
+
+    <div class="kt-logo-footer">
+      <div class="kt-logo-svg">
+        <div class="kt-logo-mark">kt</div>
+        <div class="kt-logo-text-wrap">
+          <div class="kt-logo-brand">kt</div>
+          <div class="kt-logo-sub">서대문지사</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Map overlay -->
+  <div class="kt-map-overlay" id="k-map-overlay">
+    <div class="kt-map-box">
+      <div class="kt-map-title" id="k-map-title">매장명</div>
+      <div class="kt-map-address" id="k-map-address">주소</div>
+      <div class="kt-map-canvas" id="k-map-canvas"></div>
+      <div class="kt-map-hint">✋ 손을 떼면 지도가 사라져요</div>
+    </div>
+  </div>
+
+  <div class="kt-modal" id="k-success-modal">
+    <div class="kt-modal-box">
+      <div class="kt-modal-icon">🎉</div>
+      <h3 class="kt-modal-title">상담 신청 완료!</h3>
+      <p class="kt-modal-desc">상담사가 최대한 빠르게<br/>해당 정보로 연락드릴게요!</p>
+      <div class="kt-modal-info" id="k-success-info"></div>
+      <button class="kt-btn kt-btn-full" onclick="ktCloseModal()">확인</button>
+    </div>
+  </div>
+
+  <div class="kt-toast" id="k-toast">알림</div>
+
+  <iframe name="gform-target" id="gform-target" style="display:none;" aria-hidden="true"></iframe>
+</div>
+
+<!-- html2canvas for image capture -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script>
+  const GFORM_ID = '1FAIpQLSdBnSbEiPfpDdnYd-oya8VrAgVumG2oeuGnL-2t5OmxCei-bA';
+  const GFORM_ENTRY = {
+    name: 'entry.1397181930', phone: 'entry.369064382',
+    univ: 'entry.1863853212', dept: 'entry.215495995',
+    model: 'entry.687410964', marketing: 'entry.382823911'
+  };
+  const MARKETING_CONSENT_VALUE = '네, 동의합니다';
+  const MODEL_FORM_VALUE = {
+    flip:  'Galaxy Z Flip 8',
+    fold:  'Galaxy Z Fold 8 (와이드)',
+    ultra: 'Galaxy Z Fold Ultra'
+  };
+
+  const DISCOUNT_CODES = {
+    'KTSD-M2K7': 200000,
+    'KTSD-R4J9': 300000,
+    'KTSD-B8X3': 400000,
+    'KTSD-P5N1': 500000
+  };
+
+  const models = {
+    flip:  { name: 'Galaxy Z Flip 8',        price: 1936000, preorder: 253000 },
+    fold:  { name: 'Galaxy Z Fold 8 (와이드)', price: 2531100, preorder: 253000 },
+    ultra: { name: 'Galaxy Z Fold Ultra',    price: 2833000, preorder: 255700 }
+  };
+
+  const PLAN_PRICE = 120000;
+  const PLAN_DISCOUNT_25 = 0.25;
+  const CARD_DISCOUNT = 21000;
+
+  let currentModelKey = 'flip';
+  let currentInstallMonths = 0;
+  let appliedCodeDiscount = 0;
+
+  // ⭐ 오프라인 매장 (구글맵 embed URL 사용)
+  const stores = [
+    {
+      district: '은평구',
+      list: [
+        { id: 'yeonsinnae', name: 'KT 엠에이치플러스 연신내점', addr: '서울 은평구 연서로 278, 1층', tel: '02-387-2626' },
+        { id: 'bulgwang',   name: 'KT 엠에이치플러스 불광역점', addr: '서울시 은평구 불광로 27, 1층 (불광역 7번 출구 다이소 옆)', tel: '02-356-5016' }
+      ]
+    },
+    {
+      district: '마포구',
+      list: [
+        { id: 'hongdae', name: 'KT 홍대에드샵플러스 직영점', addr: '서울특별시 마포구 양화로18길 3 (홍대입구역 8번 출구)', tel: '02-338-9601' },
+        { id: 'mangwon', name: 'KT 엠에이치플러스 망원역점', addr: '서울시 마포구 월드컵로 101 (망원동 57-418) 1층', tel: '02-333-7739' }
+      ]
+    },
+    {
+      district: '서대문구',
+      list: [
+        { id: 'myeongji', name: 'KT 명지대사거리 직영점', addr: '서울특별시 서대문구 증가로 144', tel: '02-3151-0158' }
+      ]
+    }
+  ];
+
+  // === Google Map (embed with search query) ===
+  function openMap(store) {
+    document.getElementById('k-map-title').textContent = store.name;
+    document.getElementById('k-map-address').textContent = store.addr + '  ·  ☎ ' + store.tel;
+    document.getElementById('k-map-overlay').classList.add('active');
+
+    // 구글맵 임베드 (검색 쿼리 방식 - API 키 불필요)
+    const query = encodeURIComponent(store.name + ' ' + store.addr);
+    const embedUrl = `https://www.google.com/maps?q=${query}&hl=ko&z=17&output=embed`;
+    document.getElementById('k-map-canvas').innerHTML =
+      `<iframe src="${embedUrl}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+  }
+  function closeMap() {
+    document.getElementById('k-map-overlay').classList.remove('active');
+    // iframe 정리
+    setTimeout(() => { document.getElementById('k-map-canvas').innerHTML = ''; }, 300);
+  }
+
+  function renderStores() {
+    const list = document.getElementById('k-store-list');
+    list.innerHTML = stores.map(group => `
+      <div class="kt-district-title">📍 ${group.district}</div>
+      <div class="kt-contact-list" style="margin-bottom:8px;">
+        ${group.list.map(s => `
+          <div class="kt-store" data-id="${s.id}">
+            <span class="kt-contact-icon">🏬</span>
+            <div class="kt-store-info">
+              <div class="kt-contact-value">${s.name}</div>
+              <div class="kt-contact-label" style="margin-top:4px;">${s.addr}</div>
+              <div class="kt-contact-tel">☎ ${s.tel}</div>
+              <div class="kt-store-hint">🗺️ 꾹 눌러 지도 보기</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `).join('');
+
+    // Flatten all stores for lookup
+    const allStores = stores.flatMap(g => g.list);
+    list.querySelectorAll('.kt-store').forEach(el => {
+      const id = el.getAttribute('data-id');
+      const store = allStores.find(s => s.id === id);
+      const start = (e) => { e.preventDefault(); el.classList.add('showmap'); openMap(store); };
+      const end   = () => { el.classList.remove('showmap'); closeMap(); };
+      el.addEventListener('mousedown', start); el.addEventListener('mouseup', end); el.addEventListener('mouseleave', end);
+      el.addEventListener('touchstart', start, { passive: false }); el.addEventListener('touchend', end); el.addEventListener('touchcancel', end);
+    });
+  }
+
+  // === Quiz ===
+  const questions = [
+    { q: "지하철에서 나는 주로…", opts: [
+      { t: "인스타 릴스 · 유튜브 숏폼을 계속 넘긴다", type: "F" },
+      { t: "e-book · 넷플릭스로 몰아본다", type: "W" },
+      { t: "메일 확인하고 자료 정리한다", type: "U" }
+    ]},
+    { q: "친구랑 여행 갔을 때 내 역할은?", opts: [
+      { t: "셀카·브이로그 담당 📸", type: "F" },
+      { t: "숙소에서 다 같이 볼 영화 고르는 사람 🎬", type: "W" },
+      { t: "일정·예산 관리하는 총무 📊", type: "U" }
+    ]},
+    { q: "새 폰을 산다면 가장 끌리는 한 마디는?", opts: [
+      { t: "'디자인이 예뻐야 들고 다니지'", type: "F" },
+      { t: "'큰 화면으로 콘텐츠 즐기고 싶어'", type: "W" },
+      { t: "'노트북 없이도 일할 수 있으면 좋겠어'", type: "U" }
+    ]},
+    { q: "카페에서 자리 잡고 폰을 열면 가장 먼저 하는 일은?", opts: [
+      { t: "친구랑 카톡 · SNS 스토리 올리기", type: "F" },
+      { t: "밀리의 서재 열어서 책 읽기 / 웹툰 보기", type: "W" },
+      { t: "메모 앱 켜서 아이디어 정리하기", type: "U" }
+    ]},
+    { q: "폰에서 절대 포기 못 하는 기능은?", opts: [
+      { t: "예쁜 폼팩터 + 셀카 카메라", type: "F" },
+      { t: "몰입감 있는 대화면 디스플레이", type: "W" },
+      { t: "멀티윈도우 · 데스크탑 모드", type: "U" }
+    ]},
+    { q: "친구가 '이 폰 진짜 좋다'라고 자랑한다면 나는?", opts: [
+      { t: "'예쁘다! 나도 사진 찍고 싶어'", type: "F" },
+      { t: "'화면 커? 나도 영상 볼 때 좋겠다'", type: "W" },
+      { t: "'그거 문서 편집 잘 돼?'", type: "U" }
+    ]}
+  ];
+
+  const resultContent = {
+    fold: {
+      emoji: '🌿', type: 'FOLD 8 · 와이드 유형',
+      title: 'Galaxy Z Fold 8 (와이드)',
+      subtitle: '"펼치는 순간, 하루가 넓어지는 사람"',
+      oneliner: '💜 "콘텐츠와 여유를 사랑하는, 조용히 깊은 감상러"',
+      persona: [
+        '당신은 빠르게 스쳐 가는 것들 사이에서, 굳이 한 번 더 멈춰서 바라보는 사람입니다.',
+        '남들이 지나칠 장면 앞에서 한 컷 더 담아두고, 좋아하는 웹툰 한 편을 다 읽어야 잠이 오는 성향을 가지고 있습니다.',
+        '당신에게 스마트폰은 단순한 기기가 아니라 하루를 넓혀주는 창입니다.',
+        '그래서 당신에게는 \'펼침의 여유\'를 아는 폴더블, Galaxy Z Fold 8 (와이드)가 잘 어울립니다.'
+      ],
+      keywords: ['여백을 좋아하는 감성러','콘텐츠를 아끼고 오래 곱씹는 사람','디자인보다 \'경험의 밀도\'를 중요하게 여기는 사람','가볍고 부드러운 것에 마음이 가는 사람','혼자만의 몰입 시간을 소중히 여기는 사람'],
+      reasons: [
+        { title: '여권과 유사한 마법의 비율', desc: '당신은 크지도 작지도 않은 것에 마음이 갑니다. 마법의 비율은 손 안의 안정감과 눈앞의 시원함을 동시에 주는 형태입니다.' },
+        { title: '역대 가장 가벼운 201g의 폴드', desc: '오래 들고 있어도 손목이 편해야 하고, 코트 주머니 속에서도 부담이 없어야 합니다. Fold 8은 그런 당신을 위해 가장 가벼운 폴드로 태어났습니다.' },
+        { title: '접으면 숏폼, 펼치면 롱폼', desc: '짧게 웃고 싶을 땐 5.5형 세로 화면, 깊게 몰입하고 싶을 땐 7.6형 4:3 화면. Fold 8은 당신의 감정 리듬을 이해하는 폴더블입니다.' },
+        { title: '폴드 최초의 빛반사 방지 · 3,000nits', desc: '햇살 좋은 카페 창가, 산책길, 캠핑장의 오후. Fold 8은 밝은 빛 아래에서도 콘텐츠를 놓치지 않게 해줍니다.' },
+        { title: '당신의 감성을 이해하는 Galaxy AI', desc: 'Photo Assist · My FancCam · Now Nudge · Now Brief. 당신에게 AI는 하루의 결을 부드럽게 이어주는 조용한 조력자에 가깝습니다.' }
+      ],
+      spec: [
+        ['디자인', '201g, 여권과 유사한 콤팩트 포켓 사이즈, 라벤더(시그니처)·그라파이트·크림'],
+        ['디스플레이', '접으면 5.5형 10:16 / 펼치면 7.6형 4:3, Dynamic AMOLED 2X, 최대 3,000nits'],
+        ['성능', 'Snapdragon 8 Elite Gen5 (NPU 중심 AI 성능)'],
+        ['배터리', '4,800mAh, 45W 초고속 유선 충전 · 20W 무선 충전'],
+        ['Galaxy AI', 'Photo Assist · My FancCam · Now Nudge · Now Brief']
+      ],
+      conclusion: { headline: '"당신은 서두르지 않기에, 더 많은 것을 볼 수 있는 사람입니다."', body: 'Galaxy Z Fold 8 (와이드)는 그런 당신의 시선을, 조금 더 넓게 펼쳐 줍니다.' }
+    },
+    flip: {
+      emoji: '💗', type: 'FLIP 8 · 포켓 감성 유형',
+      title: 'Galaxy Z Flip 8',
+      subtitle: '"포켓 속에서 하루를 켜는 사람"',
+      oneliner: '🌷 "나만의 스타일로 하루를 물들이는, 감각적인 트렌드 러버"',
+      persona: [
+        '당신은 새로운 것에 유난히 눈이 밝은 사람입니다.',
+        '남들이 하는 것보다 \'나에게 어울리는 것\'을 먼저 찾아내고, 작은 디테일에서도 나만의 취향을 담아내는 성향을 가지고 있습니다.',
+        '당신에게 스마트폰은 단순한 기기가 아니라 오늘의 무드를 완성하는 액세서리입니다.',
+        '그래서 당신에게는 \'포켓에서 시작되는 개성\'을 아는 폴더블, Galaxy Z Flip 8이 잘 어울립니다.'
+      ],
+      keywords: ['개성과 트렌드를 놓치지 않는 감각파','큰 것보다 예쁘고 편한 것을 선호하는 사람','셀피와 브이로그로 일상을 기록하는 사람','작은 디테일에서 만족을 느끼는 사람','가벼운 무게와 슬림한 실루엣을 중요하게 여기는 사람'],
+      reasons: [
+        { title: '역대급으로 얇아진 슬림 베젤', desc: 'Flip 8의 커버 디스플레이는 가장 슬림한 베젤 덕분에 끝까지 꽉 찬 느낌을 줍니다.' },
+        { title: '180g · 6.1mm의 슬림 디자인', desc: '코트 주머니에도, 작은 크로스백에도 부담 없이 들어가는 사이즈입니다.' },
+        { title: '손에 감기는 편안한 그립', desc: '경사면과 곡률이 더해진 실루엣으로 여닫는 순간마다 편안함이 스며듭니다.' },
+        { title: '광각 50MP F1.8 · Super Steady · Camcorder Grip', desc: '밝은 광각 렌즈와 흔들림 없는 촬영, 캠코더 그립으로 감각적인 브이로그를 담아냅니다.' },
+        { title: '당신의 개성을 담는 컬러 팔레트', desc: '핑크(시그니처)·크림·그라파이트. Flip 8의 컬러는 오늘의 옷차림처럼 당신의 무드를 따라옵니다.' }
+      ],
+      spec: [
+        ['디자인', '180g · 6.1mm, 곡률 실루엣, 핑크(시그니처)·크림·그라파이트'],
+        ['디스플레이', '가장 슬림한 베젤의 풀커버 커버 디스플레이'],
+        ['카메라', '광각 50MP F1.8, Super Steady, Camcorder Grip'],
+        ['사용성', '커버 화면 중심 빠른 접근, 플렉스 모드 셀피·브이로그'],
+        ['Galaxy AI', '상황을 이해하는 Galaxy AI 지원']
+      ],
+      conclusion: { headline: '"당신은 크지 않아도 충분히 빛나는 사람입니다."', body: 'Galaxy Z Flip 8은 그런 당신의 감각을, 손 안의 무드로 완성해 줍니다.' }
+    },
+    ultra: {
+      emoji: '🖤', type: 'FOLD ULTRA · 올라운더 유형',
+      title: 'Galaxy Z Fold 8 Ultra',
+      subtitle: '"펼치는 순간, 세상을 다 담아내는 사람"',
+      oneliner: '💜 "한계를 두지 않는, 진심으로 몰입하는 올라운더"',
+      persona: [
+        '당신은 하나로 만족하지 않는 사람입니다.',
+        '일도, 취미도, 촬영도, 콘텐츠도 — 모든 것을 제대로 해내고 싶은 성향을 가지고 있습니다.',
+        '당신에게 스마트폰은 단순한 기기가 아니라 하루의 모든 순간을 지휘하는 컨트롤 타워입니다.',
+        '그래서 당신에게는 \'펼치면 전부 담아내는 폴더블\', Galaxy Z Fold 8 Ultra가 잘 어울립니다.'
+      ],
+      keywords: ['일과 취미 모두에서 완성도를 중요하게 여기는 사람','화면 하나로는 부족한, 멀티태스킹 진심러','카메라의 스펙까지 꼼꼼히 따지는 사람','\'끝판왕\'이라는 단어에 마음이 흔들리는 사람','하루를 밀도 있게 채우고 싶은 사람'],
+      reasons: [
+        { title: '울트라 슬릭 디자인 · Unfold 4.1mm', desc: '전작 4.2mm에서 4.1mm로 더 얇아졌고, 마그네틱 힌지로 부드럽게 펼쳐집니다.' },
+        { title: '최대 3분할 Multi Windows', desc: '3분할 멀티윈도우로 문서·메신저·자료 검색을 동시에 처리합니다.' },
+        { title: 'Dynamic AMOLED 2X · 442ppi · 3,000nits', desc: '전작 374ppi에서 442ppi로 밀도가 올라간 최고 사양의 디스플레이입니다.' },
+        { title: '초광각 50MP · 슈퍼스테디 · 듀얼 레코딩', desc: '초광각 12MP에서 50MP로 상향, 좌우 분할 듀얼 레코딩까지 지원합니다.' },
+        { title: 'Snapdragon 8 Elite Gen 5 · 5,000mAh', desc: '강력한 프로세서와 5,000mAh 배터리로 온종일 당신의 속도를 따라옵니다.' }
+      ],
+      spec: [
+        ['디자인', 'Unfold 4.1mm 울트라 슬릭, 마그네틱 힌지, 바이올렛 쉐도우(시그니처)'],
+        ['디스플레이', 'Dynamic AMOLED 2X, 3,000nits, 442ppi'],
+        ['성능', 'Snapdragon 8 Elite Gen 5, 최대 3분할 Multi Windows'],
+        ['배터리', '5,000mAh 대용량 배터리'],
+        ['카메라', '트리플 렌즈, 초광각 50MP, 슈퍼스테디, 듀얼 레코딩'],
+        ['Galaxy AI', 'Agentic AI 지원']
+      ],
+      conclusion: { headline: '"당신은 한 번에 여러 가지를 담아내는 사람입니다."', body: 'Galaxy Z Fold 8 Ultra는 그런 당신의 밀도를 더 넓은 화면과 더 강한 성능으로 받쳐 줍니다.' }
+    }
+  };
+
+  let idx = 0, scores = { F: 0, W: 0, U: 0 }, recommendedKey = 'flip';
+  function ktStart() { idx = 0; scores = { F: 0, W: 0, U: 0 }; show('k-quiz'); renderQ(); }
+  function renderQ() {
+    const q = questions[idx];
+    document.getElementById('k-qnum').textContent = `Q${idx + 1} / ${questions.length}`;
+    document.getElementById('k-qtitle').textContent = q.q;
+    document.getElementById('k-bar').style.width = (idx / questions.length * 100) + '%';
+    const box = document.getElementById('k-opts'); box.innerHTML = '';
+    q.opts.forEach(o => { const b = document.createElement('button'); b.className='kt-opt'; b.textContent=o.t; b.onclick=()=>pick(o.type); box.appendChild(b); });
+    if (window._reportHeight) _reportHeight();
+  }
+  function pick(type) { scores[type]++; idx++; if (idx < questions.length) renderQ(); else showResult(); }
+
+  function renderResultContent(key) {
+    const r = resultContent[key];
+    const html = `
+      <div class="kt-result-hero">
+        <div class="kt-result-emoji">${r.emoji}</div>
+        <div class="kt-result-type">${r.type}</div>
+        <div class="kt-result-title-big">${r.title}</div>
+        <div style="color:#5B5470; font-style:italic; font-size:var(--text-small);">${r.subtitle}</div>
+        <div class="kt-result-oneliner">${r.oneliner}</div>
+      </div>
+      <div class="kt-card">
+        <div class="kt-section-heading">💭 당신은 어떤 사람인가요?</div>
+        ${r.persona.map(p => `<p class="kt-persona-desc">${p}</p>`).join('')}
+      </div>
+      <div class="kt-card">
+        <div class="kt-section-heading">🌸 당신의 성향 키워드</div>
+        <ul class="kt-keyword-list">
+          ${r.keywords.map(k => `<li>${k}</li>`).join('')}
+        </ul>
+      </div>
+      <div class="kt-card">
+        <div class="kt-section-heading">💫 왜 ${r.title}가 당신과 잘 어울릴까요</div>
+        ${r.reasons.map((rs, i) => `
+          <div class="kt-reason">
+            <div class="kt-reason-title"><span class="kt-reason-num">${i+1}</span>${rs.title}</div>
+            <p class="kt-reason-desc">${rs.desc}</p>
+          </div>
+        `).join('')}
+      </div>
+      <div class="kt-card">
+        <div class="kt-section-heading">📱 당신을 위한 ${r.title} 스펙 요약</div>
+        <table class="kt-spec-table">
+          ${r.spec.map(s => `<tr><td>${s[0]}</td><td>${s[1]}</td></tr>`).join('')}
+        </table>
+      </div>
+      <div class="kt-card">
+        <div class="kt-conclusion">
+          <b>${r.conclusion.headline}</b>
+          ${r.conclusion.body}
+        </div>
+      </div>
+    `;
+    document.getElementById('k-result-content').innerHTML = html;
+  }
+
+  function showResult() {
+    document.getElementById('k-bar').style.width = '100%';
+    let top='F'; if (scores.W > scores[top]) top='W'; if (scores.U > scores[top]) top='U';
+    recommendedKey = top === 'F' ? 'flip' : top === 'W' ? 'fold' : 'ultra';
+    renderResultContent(recommendedKey);
+    ['k-other-picker','k-quote-card','k-consult','k-online','k-offline'].forEach(id => document.getElementById(id).style.display = 'none');
+    document.getElementById('f-model').value = recommendedKey;
+    show('k-result');
+    renderStores();
+  }
+
+  function ktShowQuoteRecommended() { setQuoteModel(recommendedKey); revealBelowQuote(); }
+  function ktShowOtherPicker() { document.getElementById('k-other-picker').style.display = 'block'; if (window._reportHeight) _reportHeight(); }
+  function ktPickModel(key, btn) {
+    document.querySelectorAll('.kt-model-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    setQuoteModel(key); revealBelowQuote();
+  }
+
+  function setQuoteModel(key) {
+    currentModelKey = key;
+    document.getElementById('qm-name').textContent = models[key].name;
+    document.getElementById('f-model').value = key;
+    document.getElementById('k-quote-card').style.display = 'block';
+    renderQuote();
+  }
+
+  function applyCode() {
+    const code = document.getElementById('q-code').value.trim().toUpperCase();
+    const statusEl = document.getElementById('q-code-status');
+    if (!code) {
+      appliedCodeDiscount = 0;
+      statusEl.className = 'kt-code-status';
+      statusEl.textContent = '';
+    } else if (DISCOUNT_CODES[code]) {
+      appliedCodeDiscount = DISCOUNT_CODES[code];
+      statusEl.className = 'kt-code-status success';
+      statusEl.innerHTML = `✅ 특판 코드 적용 완료 · <b>${appliedCodeDiscount.toLocaleString('ko-KR')}원</b> 추가 할인!`;
+    } else {
+      appliedCodeDiscount = 0;
+      statusEl.className = 'kt-code-status error';
+      statusEl.textContent = '❌ 유효하지 않은 코드입니다. 소속 단과대에서 확인해주세요.';
+    }
+    renderQuote();
+  }
+
+  function pickInstall(months, btn) {
+    document.querySelectorAll('.kt-install-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentInstallMonths = months;
+    renderQuote();
+  }
+
+  function fmt(n) { return Math.round(n).toLocaleString('ko-KR') + '원'; }
+
+  function renderQuote() {
+    const m = models[currentModelKey];
+    const codeDiscount = appliedCodeDiscount;
+    const deviceFinal = m.price - m.preorder - codeDiscount;
+    const totalDeviceDiscount = m.preorder + codeDiscount;
+
+    document.getElementById('qb-price').textContent = fmt(m.price);
+    document.getElementById('qb-sub1').textContent = '-' + fmt(m.preorder);
+
+    const codeRow = document.getElementById('qb-code-row');
+    if (codeDiscount > 0) {
+      codeRow.style.display = 'table-row';
+      document.getElementById('qb-code-amount').textContent = '-' + fmt(codeDiscount);
+    } else {
+      codeRow.style.display = 'none';
+    }
+    document.getElementById('qb-device-final').textContent = fmt(deviceFinal);
+
+    document.getElementById('qb-total-discount').textContent = '-' + fmt(totalDeviceDiscount);
+    document.getElementById('qb-total-discount-sub').textContent =
+      codeDiscount > 0
+        ? `사전예약 ${fmt(m.preorder)} + 특판 코드 ${fmt(codeDiscount)}`
+        : `사전예약 할인 (특판 코드 미적용)`;
+
+    const installLabel = currentInstallMonths === 0 ? '즉납' : currentInstallMonths + '개월 할부';
+    document.getElementById('qb-monthly-title').textContent = `📱 월 납부 금액 (${installLabel} 기준)`;
+
+    const deviceMonthly = currentInstallMonths === 0 ? 0 : deviceFinal / currentInstallMonths;
+    const planWithBaseDiscount = PLAN_PRICE * (1 - PLAN_DISCOUNT_25);
+    const baseMonthly = deviceMonthly + planWithBaseDiscount;
+    document.getElementById('qb-monthly-base').textContent = fmt(baseMonthly);
+    document.getElementById('qb-monthly-breakdown').textContent =
+      currentInstallMonths === 0
+        ? `단말 할부 0원 + 요금제 ${fmt(planWithBaseDiscount)} (12만원 - 25% 약정할인)`
+        : `단말 할부 ${fmt(deviceMonthly)} + 요금제 ${fmt(planWithBaseDiscount)}`;
+
+    const scenarios = [
+      { name: '① 기본 (요금 25% 약정할인)', planFinal: planWithBaseDiscount },
+      { name: '② + 프리미엄 결합 (요금 추가 25%)', planFinal: planWithBaseDiscount * (1 - PLAN_DISCOUNT_25) },
+      { name: '③ + 결합 + 제휴카드 (월 -21,000원)', planFinal: planWithBaseDiscount * (1 - PLAN_DISCOUNT_25) - CARD_DISCOUNT }
+    ];
+
+    const tbody = document.getElementById('qb-scenario-body');
+    tbody.innerHTML = scenarios.map((s, i) => `
+      <tr class="${i === scenarios.length - 1 ? 'highlight' : ''}">
+        <td>${s.name}</td>
+        <td>${currentInstallMonths === 0 ? '-' : fmt(deviceMonthly)}</td>
+        <td>${fmt(s.planFinal)}</td>
+        <td class="final-cell">${fmt(deviceMonthly + s.planFinal)}</td>
+      </tr>
+    `).join('');
+  }
+
+  function revealBelowQuote() {
+    document.getElementById('k-consult').style.display = 'block';
+    document.getElementById('k-online').style.display = 'block';
+    document.getElementById('k-offline').style.display = 'block';
+    if (window._reportHeight) _reportHeight();
+    setTimeout(() => document.getElementById('k-quote-card').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  }
+
+  // === ⭐ SHARE / DOWNLOAD ===
+  function showToast(msg) {
+    const t = document.getElementById('k-toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  function captureQuoteAsCanvas() {
+    const el = document.getElementById('quote-capture-area');
+    return html2canvas(el, {
+      backgroundColor: '#ffffff',
+      scale: 2,
+      useCORS: true,
+      logging: false
+    });
+  }
+
+  function downloadQuote() {
+    showToast('📸 견적서 이미지 생성 중...');
+    captureQuoteAsCanvas().then(canvas => {
+      const link = document.createElement('a');
+      const modelName = MODEL_FORM_VALUE[currentModelKey].replace(/[^\w가-힣]/g, '_');
+      const today = new Date().toISOString().slice(0, 10);
+      link.download = `KT서대문지사_${modelName}_견적서_${today}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      showToast('✅ 이미지가 저장되었습니다');
+    }).catch(err => {
+      console.error(err);
+      showToast('❌ 저장 실패 · 다시 시도해주세요');
+    });
+  }
+
+  function shareNative() {
+    showToast('📸 이미지 생성 중...');
+    captureQuoteAsCanvas().then(canvas => {
+      canvas.toBlob(async blob => {
+        const modelName = MODEL_FORM_VALUE[currentModelKey];
+        const file = new File([blob], `KT_${modelName}_견적서.png`, { type: 'image/png' });
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({
+              files: [file],
+              title: `KT 서대문지사 · ${modelName} 견적서`,
+              text: `${modelName} 사전예약 견적서를 확인해보세요!`
+            });
+            showToast('✅ 공유 완료');
+          } catch (e) {
+            if (e.name !== 'AbortError') showToast('❌ 공유 실패');
+          }
+        } else {
+          // Fallback: download
+          const link = document.createElement('a');
+          link.download = `KT서대문지사_견적서.png`;
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          showToast('💾 공유가 지원되지 않아 다운로드했어요');
+        }
+      });
+    });
+  }
+
+  function shareKakao() {
+    // 카카오 SDK가 로드되지 않았으므로 이미지 다운로드 후 안내
+    showToast('📸 이미지 생성 중 · 저장 후 카톡에서 전송해주세요');
+    captureQuoteAsCanvas().then(canvas => {
+      const link = document.createElement('a');
+      const modelName = MODEL_FORM_VALUE[currentModelKey].replace(/[^\w가-힣]/g, '_');
+      link.download = `KT서대문지사_${modelName}_견적서.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      setTimeout(() => showToast('💛 저장된 이미지를 카카오톡에 첨부해주세요'), 1500);
+    });
+  }
+
+  function copyQuoteLink() {
+    const modelName = MODEL_FORM_VALUE[currentModelKey];
+    const url = window.location.href;
+    const text = `[KT 서대문지사] ${modelName} 사전예약 견적서\n${url}`;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('✅ 링크가 복사되었습니다');
+      }).catch(() => {
+        showToast('❌ 복사 실패 · 브라우저 권한을 확인해주세요');
+      });
+    } else {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); showToast('✅ 링크가 복사되었습니다'); }
+      catch (e) { showToast('❌ 복사 실패'); }
+      document.body.removeChild(ta);
+    }
+  }
+
+  // === Google Form submit ===
+  function submitToGoogleForm(payload) {
+    const form = document.createElement('form');
+    form.action = `https://docs.google.com/forms/d/e/${GFORM_ID}/formResponse`;
+    form.method = 'POST'; form.target = 'gform-target'; form.style.display = 'none';
+    const addField = (name, value) => { const input = document.createElement('input'); input.type = 'hidden'; input.name = name; input.value = value; form.appendChild(input); };
+    addField(GFORM_ENTRY.name, payload.name);
+    addField(GFORM_ENTRY.phone, payload.phone);
+    addField(GFORM_ENTRY.univ, payload.univ);
+    addField(GFORM_ENTRY.dept, payload.dept);
+    addField(GFORM_ENTRY.model, payload.modelFormValue);
+    addField(GFORM_ENTRY.marketing, MARKETING_CONSENT_VALUE);
+    document.body.appendChild(form); form.submit();
+    setTimeout(() => document.body.removeChild(form), 500);
+  }
+
+  function ktSubmit() {
+    const name = document.getElementById('f-name').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const univ = document.getElementById('f-univ').value.trim();
+    const dept = document.getElementById('f-dept').value.trim();
+    const modelKey = document.getElementById('f-model').value;
+    const modelFormValue = MODEL_FORM_VALUE[modelKey];
+    if (!name) { alert('이름을 입력해주세요!'); return; }
+    if (!phone || !/^[\d\-\s+]{9,}$/.test(phone)) { alert('연락처를 올바르게 입력해주세요!'); return; }
+    if (!univ) { alert('대학교를 입력해주세요!'); return; }
+    if (!dept) { alert('학과를 입력해주세요!'); return; }
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true; btn.textContent = '전송 중...';
+    submitToGoogleForm({ name, phone, univ, dept, modelFormValue });
+    setTimeout(() => {
+      document.getElementById('k-success-info').innerHTML = `
+        <div>👤 <b>이름</b> · ${name}</div>
+        <div>📞 <b>연락처</b> · ${phone}</div>
+        <div>🎓 <b>학교/학과</b> · ${univ} ${dept}</div>
+        <div>📱 <b>희망 모델</b> · ${modelFormValue}</div>
+        <div>✅ <b>마케팅 정보 수신</b> · 동의</div>
+      `;
+      document.getElementById('k-success-modal').classList.add('active');
+      btn.disabled = false; btn.textContent = '상담 신청하기 →';
+      document.getElementById('f-name').value = '';
+      document.getElementById('f-phone').value = '';
+      document.getElementById('f-univ').value = '';
+      document.getElementById('f-dept').value = '';
+    }, 800);
+  }
+  function ktCloseModal() { document.getElementById('k-success-modal').classList.remove('active'); }
+  function show(id) { document.querySelectorAll('.kt-section').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); if (window._reportHeight) _reportHeight(); }
+  function ktRestart() { show('k-hero'); }
+</script></body>
+</html>
